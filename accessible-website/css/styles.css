@@ -23,8 +23,8 @@ nav ul li {
 }
 
 a {
-    color: #1a5a96;
-    /* Darken the link color for better contrast */
+    color: #70c0ff;
+    /* Darkened link color for better contrast on dark background */
     text-decoration: none;
 }
 
@@ -39,8 +39,8 @@ h2 {
 }
 
 button {
-    background-color: #1a5a96;
-    /* Darken button background for better contrast */
+    background-color: #1a4e85;
+    /* Darkened button background for better contrast */
     color: white;
     padding: 10px 15px;
     border: none;
