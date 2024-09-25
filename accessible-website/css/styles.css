@@ -23,7 +23,8 @@ nav ul li {
 }
 
 a {
-    color: #2980b9;
+    color: #1a5a96;
+    /* Darken the link color for better contrast */
     text-decoration: none;
 }
 
@@ -38,7 +39,8 @@ h2 {
 }
 
 button {
-    background-color: #2980b9;
+    background-color: #1a5a96;
+    /* Darken button background for better contrast */
     color: white;
     padding: 10px 15px;
     border: none;
@@ -53,9 +55,7 @@ img {
     max-width: 100%;
     height: auto;
     max-height: 400px;
-    /* Limit the height of large images */
     object-fit: cover;
-    /* Maintain the aspect ratio */
 }
 
 form label {
