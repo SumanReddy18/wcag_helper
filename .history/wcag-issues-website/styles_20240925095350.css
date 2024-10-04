@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #aaa;
+    /* Low contrast text */
+    background-color: #fff;
+}
+
+header {
+    background-color: #000;
+    /* No contrast with text */
+    color: #fff;
+}
+
+a {
+    color: #ff00ff;
+    /* Poor color contrast */
+    text-decoration: none;
+}
+
+button {
+    background-color: #ccc;
+    /* Low contrast button */
+    color: #fff;
+    /* Insufficient contrast */
+}
+
+img {
+    width: 100%;
+    /* No alt attribute */
+    height: auto;
+}
+
+.hidden {
+    display: none;
+    /* Hides important content */
+}

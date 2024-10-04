@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Violations Example</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            /* Background color */
+            color: #cccccc;
+            /* Text color with low contrast */
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .focusable {
+            outline: none;
+            /* Focus not visible */
+            padding: 10px 20px;
+            background-color: #007BFF;
+            /* Button background */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hidden-focus {
+            position: absolute;
+            left: -9999px;
+            /* Link is hidden off-screen */
+        }
+
+        .input-field {
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 200px;
+            margin: 10px 0;
+        }
+
+        .hidden {
+            display: none;
+            /* Additional hidden element */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Accessibility Violations Example</h1>
+
+    <p>This text has poor color contrast. The text is light gray on a white background, making it hard to read.</p>
+
+    <button class="focusable">Click Me</button>
+
+    <a href="#" class="hidden-focus">This link is hidden</a>
+
+    <input type="text" class="input-field" placeholder="Focus on me!" />
+
+    <div class="hidden">
+        This is some hidden content that should not be focusable or visible.
+    </div>
+
+    <script>
+        // Simulating focus issues
+        const inputField = document.querySelector('.input-field');
+
+        inputField.addEventListener('focus', function () {
+            this.style.backgroundColor = 'yellow'; // Change background on focus
+            console.log('Input field is focused');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Violations Example</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            /* Background color */
+            color: #cccccc;
+            /* Text color with low contrast */
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1,
+        h2,
+        p {
+            color: #e5e5e5;
+            /* Low contrast text for multiple elements */
+        }
+
+        .focusable {
+            outline: none;
+            /* Focus not visible */
+            padding: 10px 20px;
+            background-color: #007BFF;
+            /* Button background */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .focusable-alt {
+            outline: none;
+            /* Focus not visible */
+            padding: 8px 15px;
+            background-color: #28A745;
+            /* Button background */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hidden-focus,
+        .hidden-focus-alt {
+            position: absolute;
+            left: -9999px;
+            /* Multiple hidden links */
+        }
+
+        .input-field,
+        .input-field-alt {
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 200px;
+            margin: 10px 0;
+        }
+
+        .hidden,
+        .hidden-alt {
+            display: none;
+            /* Multiple hidden elements */
+        }
+
+        .low-contrast-btn {
+            background-color: #dddddd;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Accessibility Violations Example</h1>
+
+    <p>This text has poor color contrast. The text is light gray on a white background, making it hard to read.</p>
+
+    <h2>Another heading with poor contrast</h2>
+
+    <p style="color: #bbb;">Even more text with poor contrast to demonstrate multiple violations.</p>
+
+    <!-- Buttons with focus issues -->
+    <button class="focusable">Click Me</button>
+    <button class="focusable-alt">Submit</button>
+
+    <!-- Hidden links -->
+    <a href="#" class="hidden-focus">This link is hidden</a>
+    <a href="#" class="hidden-focus-alt">Another hidden link</a>
+
+    <!-- Input fields -->
+    <input type="text" class="input-field" placeholder="Focus on me!" />
+    <input type="text" class="input-field-alt" placeholder="Another field!" />
+
+    <!-- Low contrast button -->
+    <button class="low-contrast-btn">Low Contrast Button</button>
+
+    <!-- Hidden elements -->
+    <div class="hidden">
+        This is some hidden content that should not be focusable or visible.
+    </div>
+
+    <div class="hidden-alt">
+        Another hidden content that should be inaccessible.
+    </div>
+
+    <script>
+        // Simulating focus issues
+        const inputField = document.querySelector('.input-field');
+        const inputFieldAlt = document.querySelector('.input-field-alt');
+
+        inputField.addEventListener('focus', function () {
+            this.style.backgroundColor = 'yellow'; // Change background on focus
+            console.log('Input field is focused');
+        });
+
+        inputFieldAlt.addEventListener('focus', function () {
+            this.style.backgroundColor = 'lightblue'; // Another background change on focus
+            console.log('Alternate input field is focused');
+        });
+    </script>
+</body>
+
+</html>

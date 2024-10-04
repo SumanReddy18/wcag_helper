@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Testing Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Accessibility Testing Site</h1>
+    <button id="openModal">Open Modal</button>
+
+    <div id="myModal" class="modal hidden">
+        <div class="modal-content clipping-issue">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Inside Modal</h2>
+            <p>This is a modal window. Ensure focus management works correctly.</p>
+            <button id="insideModalButton">Inside Modal Button</button>
+        </div>
+    </div>
+
+    <input type="text" placeholder="Type here..." aria-label="Input field">
+
+    <script src="script.js"></script>
+</body>
+
+</html>
