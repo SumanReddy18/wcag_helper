@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanded Accessibility Violations Test Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: #3c3c3c;
+            color: #c0c0c0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #4a4a4a;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #b0b0b0;
+            text-decoration: none;
+            margin: 5px 10px;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+            padding: 10px;
+        }
+
+        .focus-visible:focus {
+            outline: 2px solid blue;
+        }
+
+        .focus-invisible:focus {
+            outline: none;
+        }
+
+        .focus-partially-obscured {
+            position: relative;
+        }
+
+        .focus-partially-obscured::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .focus-fully-obscured {
+            position: relative;
+        }
+
+        .focus-fully-obscured::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+        }
+
+        .fixed-size-text {
+            font-size: 12px;
+        }
+
+        .fixed-size-text-large {
+            font-size: 16px;
+        }
+
+        .low-contrast {
+            color: #a0a0a0;
+        }
+
+        .very-low-contrast {
+            color: #d0d0d0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                zoom: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Expanded Accessibility Violations Test Site</h1>
+        </header>
+        <nav>
+            <a href="#" class="focus-visible">Home</a>
+            <a href="#" class="focus-partially-obscured">About</a>
+            <a href="#" class="focus-fully-obscured">Contact</a>
+            <a href="#" class="focus-invisible">Services</a>
+            <a href="#" class="focus-visible">Blog</a>
+            <a href="#" class="focus-partially-obscured">Gallery</a>
+            <a href="#" class="focus-fully-obscured">FAQ</a>
+            <a href="#" class="focus-invisible">Support</a>
+        </nav>
+        <div class="content">
+            <div class="column">
+                <h2>Welcome to our site</h2>
+                <p>This is a sample website designed to test various accessibility violations.</p>
+                <button class="focus-visible">Normal Focus Button</button>
+                <button class="focus-partially-obscured">Partially Obscured Focus</button>
+                <button class="focus-fully-obscured">Fully Obscured Focus</button>
+                <button class="focus-invisible">Invisible Focus Button</button>
+                <h3 class="low-contrast">Features</h3>
+                <ul class="low-contrast">
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+                <p class="fixed-size-text">This text has a fixed size of 12px and won't resize properly when zooming to
+                    200%.</p>
+                <p class="fixed-size-text-large">This text has a fixed size of 16px and also won't resize properly.</p>
+            </div>
+            <div class="column">
+                <h2 class="low-contrast">Low Contrast Heading</h2>
+                <p class="low-contrast">This text has low contrast against the background, making it hard to read.</p>
+                <p class="very-low-contrast">This text has even lower contrast, making it extremely difficult to read.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" class="focus-visible" placeholder="Normal input">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="focus-partially-obscured"
+                            placeholder="Partially obscured input">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" class="focus-fully-obscured"
+                            placeholder="Fully obscured input">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea id="comment" class="focus-invisible"
+                            placeholder="Invisible focus textarea"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <select id="country" class="focus-partially-obscured">
+                            <option>Select a country</option>
+                            <option>USA</option>
+                            <option>Canada</option>
+                            <option>UK</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="focus-fully-obscured">Submit</button>
+                </form>
+            </div>
+            <div class="column">
+                <h2 class="very-low-contrast">Additional Content</h2>
+                <p class="fixed-size-text">More fixed-size text that won't resize properly when zooming to 200%.</p>
+                <button class="focus-visible">Another Normal Focus Button</button>
+                <button class="focus-partially-obscured">Another Partially Obscured Focus</button>
+                <button class="focus-fully-obscured">Another Fully Obscured Focus</button>
+                <button class="focus-invisible">Another Invisible Focus Button</button>
+                <h3 class="low-contrast">Quick Links</h3>
+                <ul class="low-contrast">
+                    <li><a href="#" class="focus-partially-obscured">Link 1</a></li>
+                    <li><a href="#" class="focus-fully-obscured">Link 2</a></li>
+                    <li><a href="#" class="focus-invisible">Link 3</a></li>
+                </ul>
+                <p class="fixed-size-text-large">Another paragraph with fixed 16px font size.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
