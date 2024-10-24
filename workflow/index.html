@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Violations Example</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            /* Background color */
+            color: #cccccc;
+            /* Text color with low contrast */
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1,
+        h2,
+        p {
+            color: #e5e5e5;
+            /* Low contrast text for multiple elements */
+        }
+
+        .focusable,
+        .focusable-alt {
+            outline: none;
+            /* Focus not visible */
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .hidden-focus,
+        .hidden-focus-alt {
+            position: absolute;
+            left: -9999px;
+            /* Hidden links moved off-screen */
+        }
+
+        .input-field,
+        .input-field-alt {
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 200px;
+            margin: 10px 0;
+        }
+
+        .low-contrast-btn {
+            background-color: #dddddd;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .overlap {
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            width: 300px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            z-index: 10;
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        .overlap-alt {
+            position: absolute;
+            top: 180px;
+            left: 0;
+            width: 250px;
+            height: 50px;
+            background-color: rgba(255, 0, 0, 0.5);
+            z-index: 10;
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Page -->
+    <div id="login" class="page active">
+        <h1>Login</h1>
+        <input type="text" class="input-field" placeholder="Username" />
+        <input type="password" class="input-field" placeholder="Password" />
+        <button class="focusable" onclick="login()">Login</button>
+        <p>Don't have an account? <button class="focusable-alt" onclick="showPage('signup')">Sign Up</button></p>
+        <button class="focusable-alt" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div id="signup" class="page">
+        <h1>Sign Up</h1>
+        <input type="text" class="input-field" placeholder="Username" />
+        <input type="password" class="input-field" placeholder="Password" />
+        <button class="focusable" onclick="signup()">Sign Up</button>
+        <button class="focusable-alt" onclick="showPage('login')">Back to Login</button>
+        <button class="focusable-alt" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Page 1 -->
+    <div id="page1" class="page">
+        <h1>Welcome to Page 1</h1>
+        <p>This is the first page with poor color contrast and other accessibility issues.</p>
+        <h2>Important Info</h2>
+        <p style="color: #bbb;">Here’s some crucial information that might be hard to read.</p>
+        <button class="focusable" onclick="showPage('page2')">Go to Page 2</button>
+        <button class="focusable-alt" onclick="showPage('page3')">Go to Page 3</button>
+        <a href="#" class="hidden-focus">This link is hidden</a>
+        <input type="text" class="input-field" placeholder="Input on Page 1" />
+        <div class="overlap">I overlap the button below!</div>
+    </div>
+
+    <!-- Page 2 -->
+    <div id="page2" class="page">
+        <h1>Discover Page 2</h1>
+        <p>This page provides additional content with the same accessibility violations.</p>
+        <h2>Details to Consider</h2>
+        <p style="color: #bbb;">This text is light gray on a white background.</p>
+        <button class="focusable" onclick="showPage('page1')">Go to Page 1</button>
+        <button class="focusable-alt" onclick="showPage('page3')">Go to Page 3</button>
+        <a href="#" class="hidden-focus-alt">Another hidden link</a>
+        <input type="text" class="input-field" placeholder="Input on Page 2" />
+        <button class="low-contrast-btn">Low Contrast Button</button>
+        <div class="overlap-alt">I overlap the input field below!</div>
+    </div>
+
+    <!-- Page 3 -->
+    <div id="page3" class="page">
+        <h1>Explore Page 3</h1>
+        <p>This final page includes more content while still showing the same issues.</p>
+        <h2>Final Notes</h2>
+        <p style="color: #bbb;">Remember that the contrast makes reading difficult!</p>
+        <button class="focusable" onclick="showPage('page2')">Go to Page 2</button>
+        <button class="focusable-alt" onclick="showPage('page4')">Go to Page 4</button>
+        <input type="text" class="input-field" placeholder="Input on Page 3" />
+        <div class="overlap">Another overlapping element here!</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div id="page4" class="page">
+        <h1>Page 4</h1>
+        <p>This is the fourth page, which continues to show accessibility violations.</p>
+        <h2>Important Reminder</h2>
+        <p style="color: #bbb;">Text here is also hard to read due to poor contrast.</p>
+        <button class="focusable" onclick="showPage('page3')">Go to Page 3</button>
+        <button class="focusable-alt" onclick="showPage('page5')">Go to Page 5</button>
+        <input type="text" class="input-field" placeholder="Input on Page 4" />
+        <div class="overlap">I overlap something important!</div>
+    </div>
+
+    <!-- Page 5 -->
+    <div id="page5" class="page">
+        <h1>Page 5</h1>
+        <p>This is the fifth page, still showcasing the same issues.</p>
+        <h2>Final Thoughts</h2>
+        <p style="color: #bbb;">Be mindful of contrast for better readability.</p>
+        <button class="focusable" onclick="showPage('page4')">Go to Page 4</button>
+        <button class="focusable-alt" onclick="showPage('summary')">Go to Summary</button>
+        <input type="text" class="input-field" placeholder="Input on Page 5" />
+        <div class="overlap">Another overlapping element here!</div>
+    </div>
+
+    <!-- Summary Page -->
+    <div id="summary" class="page">
+    <h1>Summary of Accessibility Violations</h1>
+    <p>This summary page highlights the accessibility issues found in the previous pages.</p>
+    <h2>Key Issues</h2>
+    <ul>
+        <li>Low color contrast for text</li>
+        <li>Focus outlines are not visible on buttons</li>
+        <li>Hidden links that are not accessible</li>
+        <li>Overlapping elements obstructing content</li>
+        <li>200% zoom violation</li>
+    </ul>
+    <button class="focusable" onclick="showPage('page1')">Go to Page 1</button>
+    <button class="focusable-alt" onclick="showPage('page2')">Go to Page 2</button>
+    <button class="focusable-alt" onclick="showPage('page3')">Go to Page 3</button>
+    <button class="focusable-alt" onclick="showPage('page4')">Go to Page 4</button>
+    <button class="focusable-alt" onclick="showPage('page5')">Go to Page 5</button>
+    <button class="focusable-alt" onclick="showPage('page5')">click here to go to type b issue page 1</button>
+
+    <button class="focusable-alt" onclick="toggleTypeBButtons()">Type B</button>
+    <div id="typeBButtons" style="display: none; margin-top: 20px;">
+        <button class="focusable-alt" onclick="window.open('https://tushi87.github.io/website-check/cn.html', '_blank')">Go to CN Page</button>
+        <button class="focusable-alt" onclick="window.open('https://tushi87.github.io/website-check/cl.html', '_blank')">Go to CL Page</button>
+        <button class="focusable-alt" onclick="window.open('https://www.statista.com/companies/about', '_blank')">About Statista</button>
+        <button class="focusable-alt" onclick="window.open('https://www.statista.com/', '_blank')">Statista Home</button>
+    </div>
+
+    <button class="focusable-alt" onclick="toggleTypeCButtons()">Type C</button>
+    <div id="typeCButtons" style="display: none; margin-top: 20px;">
+        <button class="focusable-alt" onclick="window.open('https://focusobsucrred.tiiny.site/', '_blank')">Focus Obscured</button>
+        <button class="focusable-alt" onclick="window.open('https://usabilitygeek.com/10-free-web-based-web-site-accessibility-evaluation-tools/', '_blank')">Usability Geek</button>
+        <button class="focusable-alt" onclick="window.open('https://www.firstcry.com/', '_blank')">FirstCry</button>
+        <button class="focusable-alt" onclick="window.open('https://www.squarespace.com/', '_blank')">Squarespace</button>
+        <button class="focusable-alt" onclick="window.open('https://www.shein.com/', '_blank')">SHEIN</button>
+        <button class="focusable-alt" onclick="window.open('https://www.newegg.com/', '_blank')">Newegg</button>
+        <button class="focusable-alt" onclick="window.open('https://www.samsclub.com/', '_blank')">Sam's Club</button>
+        <button class="focusable-alt" onclick="window.open('https://sumanreddy18.github.io/wcag_helper/a11y_type_c/index_focus.html', '_blank')">Type C Index Focus</button>
+        <button class="focusable-alt" onclick="window.open('https://sumanreddy18.github.io/wcag_helper/a11y_type_c/index_typec.html', '_blank')">Type C Index</button>
+        <button class="focusable-alt" onclick="window.open('https://sumanreddy18.github.io/wcag_helper/a11y_type_c/typec_new.html', '_blank')">Type C New</button>
+        <button class="focusable-alt" onclick="window.open('https://sumanreddy18.github.io/wcag_helper/a11y_type_c/typec_new1.html', '_blank')">Type C New 1</button>
+        <button class="focusable-alt" onclick="window.open('https://www.walmart.com/', '_blank')">Walmart</button>
+    </div>
+    <button class="focusable-alt" onclick="showZoomViolationInfo()">200% Zoom Violation</button>
+</div>
+
+<script>
+    function toggleTypeBButtons() {
+        const typeBDiv = document.getElementById('typeBButtons');
+        typeBDiv.style.display = (typeBDiv.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function toggleTypeCButtons() {
+        const typeCDiv = document.getElementById('typeCButtons');
+        typeCDiv.style.display = (typeCDiv.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function showZoomViolationInfo() {
+        alert('The 200% zoom violation refers to the inability of some elements to scale properly when the user zooms in 200%. Ensure that all elements remain accessible and usable at higher zoom levels.');
+    }
+</script>
+
+
+
+    <script>
+        function login() {
+            alert('Logged in successfully with accessibility violations!');
+            showPage('page1');
+        }
+
+        function signup() {
+            alert('Signed up successfully with accessibility violations!');
+            showPage('login');
+        }
+
+        function logout() {
+            alert('Logged out successfully with accessibility violations!');
+            showPage('login');
+        }
+
+        // Simulating focus issues
+        const inputFields = document.querySelectorAll('.input-field, .input-field-alt');
+        inputFields.forEach(inputField => {
+            inputField.addEventListener('focus', function () {
+                this.style.backgroundColor = 'yellow'; // Change background on focus
+                console.log('Input field is focused');
+            });
+        });
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
