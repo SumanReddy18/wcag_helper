@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic WCAG Issues Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive;
+            /* Unprofessional font */
+            transition: background-color 0.5s ease, color 0.5s ease;
+            color: #cccccc;
+            /* Poor contrast with certain backgrounds */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        header {
+            text-align: left;
+            /* Inconsistent alignment */
+            padding: 15px;
+            font-size: 2.5em;
+            color: #aaaaaa;
+            /* Poor contrast */
+        }
+
+        section {
+            padding: 15px;
+        }
+
+        .fact {
+            font-size: 1.2em;
+            background-color: #333333;
+            /* Poor contrast */
+            color: #222222;
+            /* Nearly invisible text */
+            padding: 10px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        a {
+            text-decoration: underline;
+            color: #777777;
+            /* Hard to distinguish links */
+        }
+
+        a:focus {
+            outline: none;
+            /* No focus indicator for accessibility */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 2px solid #111111;
+            /* Blends into some backgrounds */
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #555555;
+            /* Poor contrast */
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <section>
+        <h2></h2> <!-- Empty heading -->
+        <p class="fact" id="fact"></p>
+        <p>
+            Check <a href="#">this link</a> for more details. <!-- Non-descriptive link text -->
+        </p>
+        <div class="image" id="image-container"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Non-Accessible Dynamic Page</p>
+    </footer>
+
+    <script>
+        // Content arrays with visual and textual issues
+        const backgrounds = ["#222222", "#111111", "#333333", "#444444"]; // Poor contrast colors
+        const headers = [
+            "Welcome to WCAG Issues!",
+            "Non-Accessible Page Loaded",
+            "Testing Visual Problems",
+            "Explore Accessibility Violations"
+        ];
+        const facts = [
+            "This text might be difficult to read due to low contrast.",
+            "Here's a random fact without proper accessibility features.",
+            "WCAG issues make this page harder to use for many users.",
+            "Did you know? Accessibility improves user experience for all!",
+            "This page changes visually every time you load it."
+        ];
+        const images = [
+            "https://source.unsplash.com/random/800x600?nature",
+            "https://source.unsplash.com/random/800x600?city",
+            "https://source.unsplash.com/random/800x600?abstract",
+            "https://source.unsplash.com/random/800x600?art",
+            "https://source.unsplash.com/random/800x600?space"
+        ];
+
+        // Randomize content
+        function getRandomElement(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        // Set random background color
+        const randomBackground = getRandomElement(backgrounds);
+        document.body.style.backgroundColor = randomBackground;
+
+        // Set random header
+        document.getElementById("header").innerText = getRandomElement(headers);
+
+        // Set random fact
+        document.getElementById("fact").innerText = getRandomElement(facts);
+
+        // Set random image with no alt text
+        const randomImage = getRandomElement(images);
+        document.getElementById("image-container").innerHTML = `<img src="${randomImage}" alt="">`; // Missing alt attribute
+    </script>
+</body>
+
+</html>
