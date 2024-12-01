@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PUMA Cricket - Accessibility Challenge</title>
+    <style>
+        :root {
+            --puma-red: #d3161c;
+            --puma-black: #000000;
+            --puma-gray: #666666;
+            --text-light: rgba(255, 255, 255, 0.3);
+            --text-dark: rgba(0, 0, 0, 0.2);
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            line-height: 1.2;
+            background: linear-gradient(to right, #f0f0f0, #ddd);
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: var(--puma-black);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' fill='%23d3161c'%3E%3Cpath d='M10 10 L50 40 L90 10'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navigation a {
+            color: var(--text-light);
+            text-decoration: underline;
+            font-size: 0.6em;
+        }
+
+        .section {
+            padding: 20px;
+            border-bottom: 2px dashed var(--puma-black);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-image {
+            max-width: 100%;
+            filter: brightness(0.5);
+            border-radius: 50%;
+        }
+
+        .product-details {
+            color: var(--text-dark);
+            font-size: 0.6em;
+        }
+
+        .buy-button {
+            background-color: var(--puma-red);
+            color: white;
+            padding: 3px 7px;
+            font-size: 0.5em;
+        }
+
+        .testimonials {
+            background: linear-gradient(to right, #333, #222);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .testimonial {
+            margin: 20px 0;
+        }
+
+        .search-container {
+            background-color: var(--puma-gray);
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex-wrap: nowrap;
+        }
+
+        .search-input {
+            width: 150px;
+            font-size: 0.6em;
+        }
+
+        .search-button {
+            background-color: var(--puma-black);
+            color: white;
+            padding: 5px;
+            font-size: 0.6em;
+        }
+
+        footer {
+            background-color: var(--puma-black);
+            color: var(--text-light);
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo" role="img" aria-label="Distorted Puma Logo"></div>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <h1>PUMA Cricket Gear</h1>
+            <p>Explore our exclusive cricket gear designed for professionals.</p>
+        </section>
+
+        <section class="section product-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/300/400" alt="" class="product-image">
+                <h2>Cricket Bat</h2>
+                <p class="product-details">Professional Grade Bat</p>
+                <p class="product-details">₹9,999</p>
+                <button class="buy-button">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/300/400" alt="" class="product-image">
+                <h2>Cricket Shoes</h2>
+                <p class="product-details">Professional Performance Shoes</p>
+                <p class="product-details">₹5,999</p>
+                <button class="buy-button">Buy Now</button>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>About Our Cricket Gear</h2>
+            <p>Our cricket gear is designed for comfort and performance.</p>
+            <p>Features include premium materials, advanced design, and durability.</p>
+        </section>
+
+        <section class="section testimonials">
+            <h2>Customer Testimonials</h2>
+            <div class="testimonial">
+                <p>"The best cricket gear I’ve ever used!"</p>
+                <p>- Anonymous</p>
+            </div>
+            <div class="testimonial">
+                <p>"Great quality and fantastic prices."</p>
+                <p>- Another User</p>
+            </div>
+        </section>
+
+        <section class="section search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">Search</button>
+        </section>
+
+        <section class="section">
+            <h2>Special Offers</h2>
+            <p>Exclusive discounts for our loyal customers!</p>
+            <ul>
+                <li>20% off cricket bats</li>
+                <li>Buy one get one free on gloves</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 PUMA Cricket. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
