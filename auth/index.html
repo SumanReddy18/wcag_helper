@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Login Container -->
+    <div class="w-full max-w-md">
+        <!-- Authentication Tabs -->
+        <div class="mb-4 flex">
+            <button id="formAuthTab"
+                class="flex-1 py-2 bg-blue-500 text-white font-bold hover:bg-blue-600 active:bg-blue-700">
+                Form Authentication
+            </button>
+            <button id="basicAuthTab"
+                class="flex-1 py-2 bg-green-500 text-white font-bold hover:bg-green-600 active:bg-green-700">
+                Basic Authentication
+            </button>
+        </div>
+
+        <!-- Form Authentication Section -->
+        <div id="formAuthSection" class="bg-white shadow-md rounded px-8 pt-6 pb-8">
+            <h2 class="text-2xl text-center mb-6 font-bold">Form Authentication</h2>
+            <form id="formAuthLoginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="formUsername">
+                        Username
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="formUsername" type="text" placeholder="Username" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="formPassword">
+                        Password
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="formPassword" type="password" placeholder="******************" required>
+                </div>
+                <div id="formErrorMessage" class="text-red-500 text-center mb-4 hidden">
+                    Invalid username or password
+                </div>
+                <div class="flex items-center justify-center">
+                    <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Basic Authentication Section -->
+        <div id="basicAuthSection" class="bg-white shadow-md rounded px-8 pt-6 pb-8 hidden">
+            <h2 class="text-2xl text-center mb-6 font-bold">Basic Authentication</h2>
+            <form id="basicAuthLoginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="basicUsername">
+                        Username
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="basicUsername" type="text" placeholder="Username" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="basicPassword">
+                        Password
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="basicPassword" type="password" placeholder="******************" required>
+                </div>
+                <div id="basicErrorMessage" class="text-red-500 text-center mb-4 hidden">
+                    Invalid username or password
+                </div>
+                <div class="flex items-center justify-center">
+                    <button
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Landing Page Modal (Overlay) -->
+    <div id="landingPage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg text-center max-w-md w-full">
+            <h1 id="landingTitle" class="text-3xl font-bold mb-6"></h1>
+            <p id="landingMessage" class="mb-4"></p>
+            <button id="logoutBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const formAuthTab = document.getElementById('formAuthTab');
+        const basicAuthTab = document.getElementById('basicAuthTab');
+        const formAuthSection = document.getElementById('formAuthSection');
+        const basicAuthSection = document.getElementById('basicAuthSection');
+        const formAuthLoginForm = document.getElementById('formAuthLoginForm');
+        const basicAuthLoginForm = document.getElementById('basicAuthLoginForm');
+        const formErrorMessage = document.getElementById('formErrorMessage');
+        const basicErrorMessage = document.getElementById('basicErrorMessage');
+        const landingPage = document.getElementById('landingPage');
+        const landingTitle = document.getElementById('landingTitle');
+        const landingMessage = document.getElementById('landingMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Tab Switching
+        formAuthTab.addEventListener('click', () => {
+            formAuthSection.classList.remove('hidden');
+            basicAuthSection.classList.add('hidden');
+        });
+
+        basicAuthTab.addEventListener('click', () => {
+            basicAuthSection.classList.remove('hidden');
+            formAuthSection.classList.add('hidden');
+        });
+
+        // Form Authentication
+        formAuthLoginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('formUsername').value;
+            const password = document.getElementById('formPassword').value;
+
+            if (username === 'formuser' && password === 'formpass') {
+                showLandingPage('Form Authentication', 'You have successfully logged in via Form Authentication!');
+            } else {
+                formErrorMessage.classList.remove('hidden');
+            }
+        });
+
+        // Basic Authentication
+        basicAuthLoginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('basicUsername').value;
+            const password = document.getElementById('basicPassword').value;
+
+            if (username === 'basicuser' && password === 'basicpass') {
+                showLandingPage('Basic Authentication', 'You have successfully logged in via Basic Authentication!');
+            } else {
+                basicErrorMessage.classList.remove('hidden');
+            }
+        });
+
+        // Landing Page Display
+        function showLandingPage(title, message) {
+            landingTitle.textContent = title;
+            landingMessage.textContent = message;
+            landingPage.classList.remove('hidden');
+        }
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            landingPage.classList.add('hidden');
+            formAuthSection.classList.remove('hidden');
+            basicAuthSection.classList.add('hidden');
+
+            // Clear input fields
+            document.getElementById('formUsername').value = '';
+            document.getElementById('formPassword').value = '';
+            document.getElementById('basicUsername').value = '';
+            document.getElementById('basicPassword').value = '';
+
+            // Hide any error messages
+            formErrorMessage.classList.add('hidden');
+            basicErrorMessage.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
