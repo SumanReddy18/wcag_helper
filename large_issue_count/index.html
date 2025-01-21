@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>WCAG Violations Test Page</title>
+    <style>
+        .low-contrast {
+            color: #CCCCCC;
+            background-color: #FFFFFF;
+        }
+
+        .tiny-text {
+            font-size: 6px;
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        .error-text {
+            color: red;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // Generate multiple sections with violations
+        function generateSections() {
+            let content = '';
+            for (let i = 0; i < 1000; i++) {
+                content += `
+                    <div class="section">
+                        <!-- Missing heading level -->
+                        <h6 class="low-contrast">Section ${i}</h6>
+                        
+                        <!-- Low contrast text -->
+                        <p class="low-contrast">Low contrast text example ${i}</p>
+                        
+                        <!-- Image without alt -->
+                        <img src="https://via.placeholder.com/100x75">
+                        
+                        <!-- Button without label -->
+                        <button onclick="void(0)">
+                            <span style="display:inline-block;width:10px;height:10px;background:#fff"></span>
+                        </button>
+                        
+                        <!-- Form control without label -->
+                        <input type="text">
+                        
+                        <!-- Invalid ARIA -->
+                        <div role="button" tabindex="0" class="clickable">Click ${i}</div>
+                        
+                        <!-- Empty link -->
+                        <a href="#"> </a>
+                        
+                        <!-- Empty button -->
+                        <button></button>
+                        
+                        <!-- Invalid table -->
+                        <table>
+                            <tr>
+                                <td>Data ${i}</td>
+                            </tr>
+                        </table>
+                        
+                        <!-- Color alone for information -->
+                        <div class="error-text">Error message ${i}</div>
+                    </div>
+                `;
+            }
+            document.getElementById('main-content').innerHTML = content;
+        }
+    </script>
+
+    <!-- Header violations -->
+    <div id="header">
+        <script>
+            let headerContent = '';
+            for (let i = 0; i < 100; i++) {
+                headerContent += `
+                    <div>
+                        <div class="tiny-text">Tiny text ${i}</div>
+                        <h1 class="low-contrast">Low contrast title ${i}</h1>
+                    </div>
+                `;
+            }
+            document.write(headerContent);
+        </script>
+    </div>
+
+    <!-- Main content area -->
+    <div id="main-content"></div>
+
+    <!-- Footer violations -->
+    <div id="footer">
+        <script>
+            let footerContent = '';
+            for (let i = 0; i < 100; i++) {
+                footerContent += `
+                    <div>
+                        <div role="navigation">
+                            <ul role="presentation">
+                                <li>
+                                    <button> </button>
+                                    <a href="#"> </a>
+                                    <img src="https://via.placeholder.com/50x50">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+            document.write(footerContent);
+        </script>
+    </div>
+
+    <script>
+        // Initialize the page
+        window.onload = function () {
+            generateSections();
+        }
+    </script>
+</body>
+
+</html>
